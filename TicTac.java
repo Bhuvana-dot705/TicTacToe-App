@@ -1,27 +1,21 @@
-import java.util.Scanner;
-
 public class TicTac {
 
-    // Method to accept user slot input
-    public static int getUserSlot() {
-        Scanner sc = new Scanner(System.in);
-        int slot;
+    // Method to convert slot number to row and column
+    public static int[] convertSlotToIndex(int slot) {
+        int row = (slot - 1) / 3;
+        int col = (slot - 1) % 3;
 
-        do {
-            System.out.print("Enter a slot number (1-9): ");
-            slot = sc.nextInt();
-
-            if (slot < 1 || slot > 9) {
-                System.out.println("Invalid input! Please enter a number between 1 and 9.");
-            }
-
-        } while (slot < 1 || slot > 9);
-
-        return slot;
+        return new int[] { row, col };
     }
 
     public static void main(String[] args) {
-        int slot = getUserSlot();
-        System.out.println("Selected Slot: " + slot);
+
+        int slot = 7;
+
+        int[] index = convertSlotToIndex(slot);
+
+        System.out.println("Slot: " + slot);
+        System.out.println("Row: " + index[0]);
+        System.out.println("Column: " + index[1]);
     }
 }
