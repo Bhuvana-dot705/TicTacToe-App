@@ -2,38 +2,36 @@ import java.util.Scanner;
 
 public class TicTacToe {
 
-    static Scanner sc = new Scanner(System.in);
     static char[][] board = {
             {' ', ' ', ' '},
             {' ', ' ', ' '},
             {' ', ' ', ' '}
     };
 
-    // UC5: Validate User Move
-    public static boolean isValidMove(int row, int col) {
+    // UC6: Place Move on Board
+    public static void placeMove(int row, int col, char symbol) {
+        board[row][col] = symbol;
+    }
 
-        // Check if row and column are within bounds
-        if (row < 0 || row > 2 || col < 0 || col > 2) {
-            return false;
+    // Display Board
+    public static void displayBoard() {
+        System.out.println("-------------");
+        for (int i = 0; i < 3; i++) {
+            System.out.print("| ");
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j] + " | ");
+            }
+            System.out.println();
+            System.out.println("-------------");
         }
-
-        // Check if the cell is empty
-        if (board[row][col] != ' ') {
-            return false;
-        }
-
-        return true;
     }
 
     public static void main(String[] args) {
 
-        int row = 1;
-        int col = 1;
+        // Example move
+        placeMove(0, 0, 'X');
+        placeMove(1, 1, 'O');
 
-        if (isValidMove(row, col)) {
-            System.out.println("Valid Move");
-        } else {
-            System.out.println("Invalid Move");
-        }
+        displayBoard();
     }
 }
