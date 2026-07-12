@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.Random;
 
 public class TicTacToe {
 
@@ -8,9 +8,27 @@ public class TicTacToe {
             {' ', ' ', ' '}
     };
 
-    // UC6: Place Move on Board
-    public static void placeMove(int row, int col, char symbol) {
-        board[row][col] = symbol;
+    // UC7: Computer Makes a Random Move (Easy Level)
+    public static void computerMove() {
+
+        Random random = new Random();
+
+        while (true) {
+
+            // Generate random slot (1–9)
+            int slot = random.nextInt(9) + 1;
+
+            // Convert slot to row and column
+            int row = (slot - 1) / 3;
+            int col = (slot - 1) % 3;
+
+            // Check if the cell is empty
+            if (board[row][col] == ' ') {
+                board[row][col] = 'O';
+                System.out.println("Computer selected slot: " + slot);
+                break;
+            }
+        }
     }
 
     // Display Board
@@ -28,10 +46,7 @@ public class TicTacToe {
 
     public static void main(String[] args) {
 
-        // Example move
-        placeMove(0, 0, 'X');
-        placeMove(1, 1, 'O');
-
+        computerMove();
         displayBoard();
     }
 }
